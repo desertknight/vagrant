@@ -19,8 +19,9 @@ Vagrant.configure(2) do |config|
 
   # Our installer script, please change settings
   # 1) MySQL root password
-  # 2) Git config user.name
-  # 3) Git config user.email
+  # 2) PHP Date Timezone
+  # 3) Git config user.name
+  # 4) Git config user.email
   config.vm.provision :shell, :path => "bootstrap.sh",
     :args => [mysql_password, php_timezone, git_name, git_email]
 
