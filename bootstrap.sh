@@ -10,10 +10,13 @@ sudo update-alternatives --set editor /usr/bin/vim.basic
 
 echo "--- Install nginx, and php5-fpm packages and edit settings ---"
 sudo apt-get -y install curl nginx php5-fpm php5-mysql php5-curl php5-gd php5-intl php-pear php5-imagick php5-imap php5-mcrypt php5-memcache php5-sqlite php5-tidy php5-xmlrpc php5-xsl php5-xdebug php5-xcache php5-cli php5-xdebug php5-xcache
-# change nginx sendfile
+# change nginx configuration
 sudo sed -i 's/sendfile on;/sendfile off;/' /etc/nginx/nginx.conf
+sudo sed -i 's/# server_tokens off;/server_tokens off;\n\tclient_max_body_size 128M;/' /etc/nginx/nginx.conf
 # change date.timezone for php5-fpm
 sudo sed -i "s/;date.timezone =.*/date.timezone = $2/g" /etc/php5/fpm/php.ini
+sudo sed -i "s/post_max_size = .*/post_max_size = 128M/g" /etc/php5/fpm/php.ini
+sudo sed -i "s/upload_max_filesize = .*/upload_max_filesize = 128M/g" /etc/php5/fpm/php.ini
 sudo sed -i "s/;date.timezone =.*/date.timezone = $2/g" /etc/php5/cli/php.ini
 # change xdebug basic settings
 cat << EOF | sudo tee -a /etc/php5/mods-available/xdebug.ini
