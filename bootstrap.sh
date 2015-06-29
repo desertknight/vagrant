@@ -30,11 +30,12 @@ echo "--- Create nginx ssl certs ---"
 sudo mkdir /etc/nginx/ssl
 sudo openssl req -x509 -new -nodes -config ssl/nginx -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
 
-echo "--- Install MySQL 5.5 ---"
+echo "--- Install MySQL 5.5 and allow remote login for root ---"
 sudo debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password password $1"
 sudo debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password_again password $1"
 sudo apt-get -y install mysql-server-5.5 php5-mysql
 sudo sed -i 's/bind-address/# bind-address/g' /etc/mysql/my.cnf
+mysql -uroot -p$1 -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '$1';FLUSH PRIVILEGES;";
 
 echo "--- Install git, and configure ---"
 sudo apt-get install git -y
@@ -56,5 +57,9 @@ echo "--- Install PHPUnit ---"
 sudo curl https://phar.phpunit.de/phpunit.phar -o phpunit.phar
 sudo chmod +x phpunit.phar
 sudo mv phpunit.phar /usr/local/bin/phpunit
+
+echo "--- Restart nginx and mysql ---"
+sudo service nginx restart
+sudo service mysql restart
 
 echo "--- Everything look great, master :) ---"
