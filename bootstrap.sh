@@ -28,7 +28,7 @@ sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php5/fpm/php.ini
 
 echo "--- Create nginx ssl certs ---"
 sudo mkdir /etc/nginx/ssl
-sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
+sudo openssl req -x509 -new -nodes -config ssl/nginx -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
 
 echo "--- Install MySQL 5.5 ---"
 sudo debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password password $1"

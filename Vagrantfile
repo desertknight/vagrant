@@ -14,6 +14,9 @@ Vagrant.configure(2) do |config|
   # Use official debain wheezy box
   config.vm.box = "debian/wheezy64"
 
+  # I like this hostname, commented or remove if u wanna
+  config.vm.hostname = "development"
+
   # Our installer script, please change settings
   # 1) MySQL root password
   # 2) Git config user.name
@@ -23,6 +26,7 @@ Vagrant.configure(2) do |config|
 
   # Forwared port, define here
   config.vm.network "forwarded_port", guest: 80, host: 80
+  config.vm.network "forwarded_port", guest: 443, host: 443
   config.vm.network "forwarded_port", guest: 3306, host: 3306
 
   # Create a public network
