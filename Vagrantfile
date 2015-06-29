@@ -5,7 +5,7 @@
 git_name = "Zlatko Hristov"
 git_email = "zlatko.2create@gmail.com"
 
-php_timezone = "Europe/Sofia"
+php_timezone = "Europe\/Sofia"
 
 mysql_password = "mysecretmysqlpassword"
 

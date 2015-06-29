@@ -13,8 +13,8 @@ sudo apt-get -y install curl nginx php5-fpm php5-mysql php5-curl php5-gd php5-in
 # change nginx sendfile
 sudo sed -i 's/sendfile on;/sendfile off;/' /etc/nginx/nginx.conf
 # change date.timezone for php5-fpm
-sudo sed -i "s/;date.timezone =.*/date.timezone = $2/" /etc/php5/fpm/php.ini
-sudo sed -i "s/;date.timezone =.*/date.timezone = $2/" /etc/php5/cli/php.ini
+sudo sed -i "s/;date.timezone =.*/date.timezone = $2/g" /etc/php5/fpm/php.ini
+sudo sed -i "s/;date.timezone =.*/date.timezone = $2/g" /etc/php5/cli/php.ini
 # change xdebug basic settings
 cat << EOF | sudo tee -a /etc/php5/mods-available/xdebug.ini
 xdebug.max_nesting_level = 250
