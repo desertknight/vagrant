@@ -26,8 +26,8 @@ xdebug.var_display_max_children = -1
 xdebug.var_display_max_data = -1
 EOF
 
-sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT & ~E_NOTICE/" /etc/php5/fpm/php.ini
-sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php5/fpm/php.ini
+sudo sed -ri 's/^error_reporting\s*=.*$/error_reporting = E_ALL \& ~E_DEPRECATED \& ~E_NOTICE/g' /etc/php5/fpm/php.ini
+sudo sed -i "s/display_errors = .*/display_errors = On/g" /etc/php5/fpm/php.ini
 
 echo "--- Create nginx ssl certs ---"
 sudo mkdir /etc/nginx/ssl
