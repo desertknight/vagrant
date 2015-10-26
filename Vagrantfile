@@ -7,12 +7,12 @@ git_email = "zlatko.2create@gmail.com"
 
 php_timezone = "Europe\/Sofia"
 
-mysql_password = "mysecretmysqlpassword"
+mysql_password = "08shumen"
 
 Vagrant.configure(2) do |config|
 
   # Use official debain wheezy box
-  config.vm.box = "debian/wheezy64"
+  config.vm.box = "debian/jessie64"
 
   # I like this hostname, commented or remove if u wanna
   config.vm.hostname = "development"
