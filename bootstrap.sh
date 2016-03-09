@@ -53,8 +53,12 @@ sudo apt-get install git -y
 git config --global user.name "$3"
 git config --global user.email "$4"
 
+echo "--- Install Ruby on Rails and Sass"
+sudo apt-get install ruby-full rubygems -y
+sudo gem install sass
+
 echo "--- Install Node.JS ---"
-curl --silent --location https://deb.nodesource.com/setup_0.12 | sudo bash -
+curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
 sudo apt-get -y install nodejs
 
 echo "--- Install Bower globally ---"
