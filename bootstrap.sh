@@ -33,6 +33,9 @@ xdebug.var_display_max_children = -1
 xdebug.var_display_max_data = -1
 EOF
 
+# Remove xdebug in CLI mode, for better composer performance
+sudo php5dismod -s cli xdebug
+
 sudo sed -ri 's/^error_reporting\s*=.*$/error_reporting = E_ALL \& ~E_DEPRECATED \& ~E_NOTICE/g' /etc/php5/fpm/php.ini
 sudo sed -i "s/display_errors = .*/display_errors = On/g" /etc/php5/fpm/php.ini
 
