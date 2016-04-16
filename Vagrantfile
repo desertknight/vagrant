@@ -3,16 +3,16 @@
 
 # Config Github Settings
 git_name = "Zlatko Hristov"
-git_email = "zlatko.2create@gmail.com"
+git_email = "zlatko@github.com"
 
 php_timezone = "Europe\/Sofia"
 
-mysql_password = "08shumen"
+mysql_password = "mysecretmysqlpassword"
 
 Vagrant.configure(2) do |config|
 
   # Use official debain wheezy box
-  config.vm.box = "debian/jessie64"
+  config.vm.box = "desertknight/debian8-x64"
 
   # I like this hostname, commented or remove if u wanna
   config.vm.hostname = "development"
@@ -40,10 +40,5 @@ Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |v, override|
     v.customize [ "modifyvm", :id, "--cpus", "2" ]
     v.customize [ "modifyvm", :id, "--memory", "2048" ]
-  end
-
-  config.vm.provider "vmware_fusion" do |v, override|
-    v.vmx["numvcpus"] = "2"
-    v.vmx["memsize"] = "2048"
   end
 end
